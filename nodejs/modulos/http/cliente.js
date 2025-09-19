@@ -1,3 +1,4 @@
+//Importando o módulo http.
 const http = require('http');
 
 http.get("http://jsonplaceholder.typicode.com/todos/1", (res) => {
