@@ -1,34 +1,29 @@
-import http from "http";
+import http from 'http';
 
 const PORT = 3000;
 
-const server = http.createServer((req, res) => {
-    const url = req.url;
-    const method = req.method;
+const server = http.createServer((request, response) => {
+    const url = request.url;
+    const method = request.method;
 
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-
+    response.setHeader('Content-Type', 'text/html; charset=utf-8');
+    
     if (url === '/') {
-        res.statusCode = 200;
-        res.end('<h1> Página inicial </h1>');
+        response.statusCode = 200;
+        response.end('<h1>Pagina Inicial</h1>');
     }
     else if (url === '/sobre' && method === 'GET') {
-        res.statusCode = 200;
-        res.end('<h1>Página sobre</h1>');
+        response.statusCode = 200;
+        response.end('<h1>Sobre nós</h1> <p>Esta empresa é uma aplicação de exemplo com Node.js puro.</p>');
     }
     else if (url === '/contato') {
-        res.statusCode = 200;
-        res.end('<h1>Formulário de contato enviado!</h1>');
-    }
-      else if (url === '/fotos') {
-        res.statusCode = 200;
-        res.end('<h1>Galeria de fotos</h1>');
+        response.statusCode = 200;
+        response.end('<h1>Fale conosco</h1>');
     }
     else {
-        res.statusCode = 404;
-        res.end('<h1>Rota não encontrada</h1>');
+        response.statusCode = 404;
+        response.end('<h1>404 - Página não encontrada</h1>');
     }
-
 });
 
 server.listen(PORT, () => {
